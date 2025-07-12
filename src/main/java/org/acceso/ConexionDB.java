@@ -14,9 +14,13 @@ public class ConexionDB {
 
     // Conecta con la base de datos.
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
-        Class.forName("org.postgresql.Driver"); // Cargar el driver de PostgreSQL
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    public static Connection conectar() {
+        try {
+            return DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (SQLException e) {
+            System.err.println("Error al conectar a la base de datos: " + e.getMessage());
+            return null;
+        }
     }
 
 }
